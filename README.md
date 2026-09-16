@@ -1,11 +1,13 @@
-# Slot v1.1 · Mono edition
+# Slot v1
 
 A local scheduling app built with Python, SQLite, Google OR-Tools CP-SAT, Flask,
 and a single HTML dashboard. No accounts, cloud APIs, or frontend build tools.
 
+**DISCLAIMER:** This app was vibe coded with GPT-6 Astra. I acted as the project manager/designer, guiding and curating features, because I wanted to see how well of a project the aforementioned model could cook up.
+
 ## Monochrome interface
 
-This edition uses Geist Mono throughout the app, square corners, thin white
+This app uses Geist Mono throughout the app, square corners, thin white
 borders, black backgrounds, and a subtle graph-paper grid. Statuses and energy
 types remain distinguishable through text and border patterns. Forms, dialogs,
 metrics, and the mobile layout use the same visual system.
@@ -37,6 +39,13 @@ upgrade time; old labels already changed by v1 cannot be reconstructed.
 If reverting to v1, restore the matching pre-upgrade database backup too: the old
 app does not understand deleted tasks. See `FEATURE_AUDIT.md` for the full audit.
 The Mono edition makes no further database changes beyond v1.1.
+
+## Build (Windows)
+1. Download the folder `Slot-Windows.zip`, and extract its contents.
+2. Open the extracted folder, find `Slot.exe`, and double click it.
+3. A terminal window will open; don't close it. In your browser, type `http://127.0.0.1:5000`, and you're good to go!
+
+Note: Windows might show a SmartScreen warning because the app is unsigned (no published developer). Click **More Info** -> **Run anyway**. If you don't believe that what I've coded is safe, go to [https://www.virustotal.com](virustotal.com) and see for yourself if the .zip file is safe.
 
 ## Start on Windows
 
