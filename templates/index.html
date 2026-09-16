@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" href="/static/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="color-scheme" content="dark"><title>Slot · Make room for what matters</title>
+<style>
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/static/fonts/GeistMono-Variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+:root {
+  color-scheme: dark;
+  --bg: #080808;
+  --panel: #0b0b0b;
+  --text: #fafafa;
+  --muted: #a3a3a3;
+  --line: rgba(255,255,255,.24);
+  --strong-line: rgba(255,255,255,.65);
+  --paper: rgba(255,255,255,.055);
+  font-family: 'Geist Mono', monospace;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; border-radius: 0 !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.65 'Geist Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  background-image: linear-gradient(var(--paper) 1px,transparent 1px),linear-gradient(90deg,var(--paper) 1px,transparent 1px);
+  background-size: 24px 24px;
+}
+::selection { background: #fff; color: #000; }
+main { max-width: 1480px; min-height: 100vh; margin: auto; border-left: 1px solid var(--line); border-right: 1px solid var(--line); padding: 0 28px; }
+header,.row,.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+header { min-height: 92px; border-bottom: 1px solid var(--strong-line); padding: 20px 0; }
+.brand { display: flex; align-items: center; gap: 18px; }
+.brand-mark { width: 34px; height: 34px; border: 1px solid #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 4px; }
+.brand-mark i { background: #fff; }
+.brand-mark i:last-child { background: transparent; border: 1px solid #fff; }
+h1 { font-size: 32px; line-height: 1; font-weight: 550; letter-spacing: -2px; margin: 0; }
+.kicker { color: var(--muted); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; }
+.header-meta { display: flex; gap: 24px; align-items: center; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+.local-label { border: 1px solid var(--line); padding: 7px 10px; }
+.local-label::before { content: ''; display: inline-block; width: 5px; height: 5px; background: #fff; margin-right: 9px; vertical-align: 2px; }
+.intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding: 32px 0 28px; }
+.intro h2 { font-size: clamp(22px,3vw,38px); text-transform: none; letter-spacing: -1.6px; font-weight: 450; line-height: 1.2; margin: 8px 0 0; }
+.intro p { max-width: 310px; font-size: 11px; margin: 0 0 2px; color: var(--muted); }
+h2 { font-size: 13px; font-weight: 550; letter-spacing: .4px; margin: 0 0 18px; }
+h3 { font-size: 13px; line-height: 1.55; margin: 0; font-weight: 550; }
+p { margin: 6px 0 16px; }
+.muted,small { color: var(--muted); }
+.toolbar { border: 1px solid var(--strong-line); background: var(--panel); padding: 14px 16px; margin: 0 0 12px; }
+.toolbar label { display: flex; gap: 14px; align-items: center; color: var(--muted); text-transform: uppercase; letter-spacing: .7px; font-size: 10px; }
+.toolbar input { width: auto; margin: 0; min-height: 38px; font-size: 12px; }
+.grid { display: grid; grid-template-columns: minmax(300px,350px) minmax(0,1fr); gap: 20px; align-items: start; }
+.grid > *, .fields > *, .metrics > * { min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--line); padding: 22px; margin-bottom: 20px; position: relative; }
+.panel:has(#timeline) { background-image: linear-gradient(var(--paper) 1px,transparent 1px),linear-gradient(90deg,var(--paper) 1px,transparent 1px); background-size: 20px 20px; }
+.panel:has(.metrics) { border-color: var(--strong-line); }
+.panel > h2, .panel > .row:first-child { padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.panel > .row:first-child h2 { margin: 0; }
+.panel > .row:first-child { margin-bottom: 18px; }
+.section-index { display: inline-block; font-size: 10px; color: var(--muted); margin-right: 12px; font-weight: 400; }
+.metrics { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 0; margin: -22px -22px 18px; border-bottom: 1px solid var(--line); }
+.metric { padding: 22px 18px; border-right: 1px solid var(--line); }
+.metric:last-child { border-right: 0; }
+.metric strong { display: block; font-size: clamp(20px,2.2vw,32px); font-weight: 450; line-height: 1.4; letter-spacing: -1.3px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.metric span { display: block; margin-top: 10px; font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
+.bar { height: 12px; border: 1px solid var(--strong-line); background: repeating-linear-gradient(90deg,transparent 0 7px,rgba(255,255,255,.18) 7px 8px); overflow: hidden; margin: 12px 0 10px; }
+.bar div { height: 100%; background: repeating-linear-gradient(90deg,#fff 0 7px,#090909 7px 8px); transition: width .2s ease; }
+label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+input,select,textarea,button,option,optgroup { font-family: inherit; font-size: inherit; line-height: inherit; }
+input,select,textarea { display: block; width: 100%; min-width: 0; min-height: 40px; background: #080808; color: var(--text); border: 1px solid var(--line); padding: 9px 10px; margin-top: 6px; transition: border-color .15s; }
+input:hover,select:hover,textarea:hover { border-color: var(--strong-line); }
+input:focus,select:focus,textarea:focus { border-color: #fff; }
+input::placeholder,textarea::placeholder { color: #777; opacity: 1; }
+input::-webkit-datetime-edit { font-family: inherit; }
+input[type='date'],input[type='datetime-local'] { font-size: 11px; }
+input[type='number'] { font-variant-numeric: tabular-nums; }
+textarea { resize: vertical; min-height: 130px; font-size: 11px; line-height: 1.8; }
+button { background: #0b0b0b; color: #fff; border: 1px solid var(--strong-line); min-height: 39px; padding: 9px 12px; cursor: pointer; font-size: 11px; font-weight: 500; transition: background .15s,color .15s,border-color .15s; }
+button:hover { background: #fff; border-color: #fff; color: #000; }
+button:active { transform: translateY(1px); }
+button:disabled { opacity: .4; cursor: wait; transform: none; }
+button.primary { background: #fff; color: #000; border-color: #fff; }
+button.primary:hover { background: #151515; color: #fff; }
+button.quiet { background: #0b0b0b; min-height: 30px; padding: 5px 9px; font-size: 10px; border-color: var(--line); }
+button.quiet:hover { color: #000; background: #fff; border-color: #fff; }
+#task-form > button { width: 100%; margin-top: 3px; }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+.fields .wide { grid-column: 1 / -1; }
+.notice { min-height: 35px; margin-bottom: 18px; padding: 7px 0; font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+.notice:not(:empty)::before { content: '// '; color: #fff; }
+.notice.error { border: 1px solid #fff; background: #fff; color: #000; padding: 10px 12px; }
+.notice.error::before { content: '! '; color: #000; }
+.hint { font-size: 10px; line-height: 1.75; color: var(--muted); }
+summary { list-style: none; cursor: pointer; font-weight: 500; font-size: 12px; display: flex; align-items: center; gap: 8px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; margin-left: auto; color: var(--text); font-size: 15px; }
+details[open] > summary { padding-bottom: 15px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+details[open] > summary::after { content: '−'; }
+.item { border-top: 1px solid var(--line); padding: 17px 0; }
+.item:first-child { border-top: 0; padding-top: 0; }
+.item:last-child { padding-bottom: 0; }
+.item p { font-size: 11px; color: var(--muted); margin: 7px 0; line-height: 1.8; }
+#commitments:not(:empty) { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+.pill { display: inline-block; font-size: 9px; line-height: 1.5; font-weight: 450; text-transform: uppercase; letter-spacing: .8px; border: 1px solid var(--strong-line); padding: 3px 7px; white-space: nowrap; color: #fff; background: #0b0b0b; }
+.pill.deep { color: #000; background: #fff; border-color: #fff; }
+.pill.shallow { border-style: dashed; }
+.pill.completed { border-style: double; border-width: 3px; padding: 1px 5px; }
+.pill.skipped { color: var(--muted); border-style: dashed; }
+.reason { color: #fff !important; border-left: 2px solid #fff; padding-left: 10px; }
+.reason:empty { display: none; }
+.timeline { display: grid; gap: 12px; }
+.slot { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 18px; padding: 17px; background: #0b0b0b; border: 1px solid var(--line); border-left: 4px solid #fff; }
+.slot.shallow { border-left: 4px double #fff; }
+.slot.fixed { border-left: 4px solid #747474; background: repeating-linear-gradient(135deg,#101010 0 6px,#161616 6px 7px); }
+.slot.completed { border-left: 4px double #fff; }
+.slot.completed h3 { color: #b5b5b5; }
+.slot time { font-size: 11px; font-variant-numeric: tabular-nums; color: var(--muted); border-right: 1px solid var(--line); padding-right: 12px; }
+.slot p { margin: 6px 0 0; font-size: 10px; color: var(--muted); }
+.empty { padding: 54px 20px; text-align: center; color: var(--muted); border: 1px dashed var(--strong-line); background: rgba(8,8,8,.7); font-size: 12px; line-height: 2; }
+.legend { display: flex; gap: 16px; font-size: 9px; letter-spacing: 1px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { display: inline-block; width: 9px; height: 9px; background: #fff; }
+.legend .outline { background: transparent; border: 1px solid #fff; }
+.actions { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+.window-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto; gap: 8px; align-items: center; margin-bottom: 8px; }
+.window-row input { margin: 0; font-size: 11px; }
+footer { color: var(--muted); font-size: 9px; border-top: 1px solid var(--line); padding: 20px 0; margin: 10px 0 0; line-height: 1.9; }
+dialog { width: min(570px,calc(100vw - 28px)); max-height: calc(100dvh - 40px); overflow: auto; background: #0b0b0b; color: var(--text); border: 1px solid #fff; padding: 28px; font: inherit; }
+dialog h2 { font-size: 17px; font-weight: 450; border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 20px; }
+dialog::backdrop { background: rgba(0,0,0,.85); }
+h3,.item p,.slot p { overflow-wrap: anywhere; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+@media(min-width:1100px) { .grid > aside { padding-right: 0; } }
+@media(max-width:1000px) { main { padding: 0 18px; } .grid { grid-template-columns: minmax(280px,310px) minmax(0,1fr); gap: 16px; } .panel { padding: 18px; margin-bottom: 16px; } .metrics { margin: -18px -18px 16px; } .metric { padding: 18px 10px; } .metric strong { font-size: 22px; } .slot { grid-template-columns: 90px minmax(0,1fr); gap: 12px; padding: 13px; } .toolbar { align-items: flex-start; } }
+@media(max-width:850px) { .grid { grid-template-columns: 1fr; } .grid > aside { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; } .grid > aside > .panel:first-child { grid-row: span 3; } .grid > aside > .panel { margin-bottom: 0; } .intro { padding: 24px 0; } .intro p { max-width: 250px; } .metric strong { font-size: 30px; } .toolbar > .actions { width: 100%; } .toolbar > .actions > .primary { margin-left: auto; } }
+@media(max-width:600px) { main { padding: 0 12px; border: 0; } header { min-height: 78px; } .brand { gap: 12px; } .header-meta { gap: 0; } .header-meta > .kicker { display: none; } .intro { display: block; } .intro p { max-width: none; margin-top: 12px; } .intro h2 { letter-spacing: -.8px; } .grid > aside { display: block; } .grid > aside > .panel { margin-bottom: 16px; } .toolbar { padding: 12px; } .toolbar > .actions { display: grid; grid-template-columns: 1fr 1fr; } .toolbar > .actions > .primary { margin: 0; } #push { grid-column: 1 / -1; } .metrics { grid-template-columns: 1fr; } .metric { display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; padding: 13px 18px; border-right: 0; border-bottom: 1px solid var(--line); gap: 12px; } .metric:last-child { border-bottom: 0; } .metric strong { font-size: 26px; } .metric span { margin: 0; } .slot { grid-template-columns: 82px minmax(0,1fr); gap: 10px; padding: 12px 10px; } .slot time { font-size: 10px; padding-right: 8px; } dialog { padding: 20px; } .legend { gap: 10px; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition: none !important; } }
+</style>
+</head>
+<body><main>
+<header><div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h1>slot</h1></div><div class="header-meta"><span class="kicker">Personal scheduling workspace</span><span class="local-label">Local / Offline</span></div></header>
+<div class="intro"><div><div class="kicker">01 / Daily planner</div><h2>Make room for what matters.</h2></div><p>Your tasks. Your time.<br>A clear plan for the work ahead.</p></div>
+<div class="toolbar"><label style="margin:0">Your day<input id="day" type="date" required></label><div class="actions" style="margin:0"><button id="refresh">Refresh</button><button id="plan" class="primary">Generate schedule</button><button id="push">Push unfinished to tomorrow →</button></div></div>
+<div id="notice" class="notice" role="status" aria-live="polite">Loading your day… Keep the Slot terminal open.</div>
+<noscript><p class="reason">Slot needs JavaScript enabled to load tasks and use the dashboard.</p></noscript>
+<div class="grid"><aside>
+<section class="panel"><h2><span class="section-index">[01]</span>Add a task</h2><form id="task-form">
+<label>Task name<input name="name" required maxlength="200" placeholder="What needs your attention?"></label>
+<div class="fields"><label>Duration · minutes<input name="duration" type="number" min="1" max="1440" value="60" required></label><label>Priority<select name="priority"><option>high</option><option selected>medium</option><option>low</option></select></label></div>
+<label>Deadline · local time<input name="deadline" type="datetime-local" required></label>
+<div class="fields"><label class="wide">Energy<select name="energy"><option value="deep">Deep · focused work</option><option value="shallow">Shallow · lighter work</option></select></label><label>Minimum chunk · minutes<input name="min_chunk" type="number" min="1" max="1440" value="25" required></label><label>Maximum chunk · minutes<input name="max_chunk" type="number" min="1" max="1440" value="60" required></label></div>
+<button class="primary" type="submit">Add task</button></form></section>
+<section class="panel"><details><summary>Paste multiple tasks</summary><p class="hint">One task per line. Use quotes around names containing commas. Optional last two fields: 25m, 60m.</p><form id="bulk-form"><label>Task name, duration, priority, deadline, energy<textarea id="bulk" required placeholder="Read chapter, 60m, high, 2026-10-01 17:00, deep"></textarea></label><button type="submit">Import all tasks</button></form></details></section>
+<section class="panel"><details open><summary>Usable hours</summary><p class="hint">Applies to this date. Add separate windows for a split day. End may be 24:00. No windows means a day off.</p><form id="windows-form"><div id="windows"></div><div class="actions"><button id="add-window" type="button" class="quiet">+ Window</button><button type="submit">Save hours</button></div></form></details></section>
+<section class="panel"><details><summary>Fixed commitments</summary><form id="commitment-form"><label>Name<input name="name" required maxlength="200" placeholder="Meeting, meal, appointment…"></label><label>Starts<input name="start" type="datetime-local" required></label><label>Ends<input name="end" type="datetime-local" required></label><button type="submit">Add commitment</button></form></details><div id="commitments"></div></section>
+</aside><div>
+<section class="panel"><div class="metrics"><div class="metric"><strong id="load">0%</strong><span>Day filled</span></div><div class="metric"><strong id="scheduled">0 / 0m</strong><span>Scheduled / usable</span></div><div class="metric"><strong id="unslotted">0m</strong><span>Unslotted work</span></div></div><div class="bar" role="progressbar" aria-label="Daily load" aria-valuemin="0" aria-valuemax="100" id="loadbar"><div id="loadfill"></div></div><p class="hint" id="load-detail"></p></section>
+<section class="panel"><div class="row"><h2><span class="section-index">[02]</span>Your schedule</h2><span class="legend"><span><i aria-hidden="true"></i>DEEP</span><span><i class="outline" aria-hidden="true"></i>SHALLOW</span></span></div><div id="timeline" class="timeline"></div></section>
+<section class="panel"><h2><span class="section-index">[03]</span>Tasks <span class="muted" id="task-count"></span></h2><div id="tasks"></div></section>
+<section class="panel" id="history-panel" hidden><h2>Skipped blocks</h2><div id="history"></div></section>
+<section class="panel"><details id="trash-details"><summary>Trash <span id="trash-count"></span></summary><p class="hint">Deleted tasks leave the task list and cannot be scheduled or pushed. Completed history remains. Restore returns a task to its saved date.</p><div id="trash"></div></details></section>
+</div></div><footer>SLOT / MONO EDITION · Local wall-clock times · Scheduling edits clear affected plans. Generate again when ready.</footer>
+</main>
+<dialog id="edit-dialog" aria-labelledby="edit-title"><h2 id="edit-title">Edit task</h2>
+<form id="edit-form"><input name="id" type="hidden">
+<label>Name<input name="name" required maxlength="200"></label>
+<div class="fields"><label>Assigned date<input name="target_date" type="date" required></label><label>Total duration · minutes<input name="duration" type="number" min="1" max="1440" required></label></div>
+<label>Deadline<input name="deadline" type="datetime-local" required></label>
+<div class="fields"><label>Priority<select name="priority"><option>high</option><option>medium</option><option>low</option></select></label><label>Energy<select name="energy"><option>deep</option><option>shallow</option></select></label>
+<label>Minimum chunk · minutes<input name="min_chunk" type="number" min="1" max="1440" required></label><label>Maximum chunk · minutes<input name="max_chunk" type="number" min="1" max="1440" required></label></div>
+<p class="hint" id="edit-progress"></p><p class="hint">Duration includes completed minutes. New chunk limits apply to remaining work. Completed blocks retain their original times and labels. Increasing a completed task's duration reopens it.</p>
+<div class="actions"><button type="submit" class="primary">Save changes</button><button type="button" id="close-edit">Cancel</button></div></form><p id="edit-error" class="reason" role="alert"></p></dialog>
+<dialog id="commitment-dialog" aria-labelledby="commitment-title"><h2 id="commitment-title">Edit commitment</h2>
+<form id="commitment-edit-form"><input name="id" type="hidden"><label>Name<input name="name" required maxlength="200"></label><label>Starts<input name="start" type="datetime-local" required></label><label>Ends<input name="end" type="datetime-local" required></label><div class="actions"><button type="submit" class="primary">Save commitment</button><button type="button" id="close-commitment">Cancel</button></div></form><p id="commitment-error" class="reason" role="alert"></p></dialog>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const localDate=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const clock=m=>`${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let state, busy=false;
+$('day').value=localDate(new Date());
+function defaults(){const d=$('day').value;document.querySelector('#task-form [name=deadline]').value=d+'T17:00';document.querySelector('#commitment-form [name=start]').value=d+'T12:00';document.querySelector('#commitment-form [name=end]').value=d+'T13:00';}
+async function api(url,method='GET',data){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),method==='GET'?10000:120000);
+ try{
+  const response=await fetch(url,{method,signal:controller.signal,headers:method==='GET'?{}:{'Content-Type':'application/json'},...(method==='GET'?{}:{body:JSON.stringify(data||{})})});
+  let value;try{value=await response.json();}catch(e){if(e.name==='AbortError')throw e;throw Error('The server did not return valid data. Check the terminal.');}
+  if(!response.ok)throw Error(value.error||'Request failed.');return value;
+ }catch(e){
+  if(e.name==='AbortError')throw Error('Slot took too long to respond. The server may still be working. Use Refresh to check before repeating the action.');
+  if(e instanceof TypeError)throw Error('Cannot reach Slot. Keep the server terminal open, then use Refresh.');
+  throw e;
+ }finally{clearTimeout(timer);}
+}
+function notice(message,error=false){$('notice').textContent=message;$('notice').classList.toggle('error',error);}
+async function run(action){if(busy)return;busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);$('day').disabled=true;const waiting=setTimeout(()=>notice('Still working… Keep the terminal open.'),6000);try{await action();}catch(e){notice(e.message,true);if($('edit-dialog').open)$('edit-error').textContent=e.message;if($('commitment-dialog').open)$('commitment-error').textContent=e.message;}finally{clearTimeout(waiting);busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=(!state||state.day!==$('day').value)&&!['refresh','close-edit','close-commitment'].includes(b.id));$('day').disabled=false;}}
+function addWindow(a=540,b=1020){const row=document.createElement('div');row.className='window-row';row.innerHTML=`<input aria-label="Window start" placeholder="09:00" pattern="(?:[01][0-9]|2[0-3]):[0-5][0-9]" value="${clock(a)}" required><input aria-label="Window end" placeholder="17:00" pattern="(?:(?:[01][0-9]|2[0-3]):[0-5][0-9]|24:00)" value="${clock(b)}" required><button type="button" class="quiet" aria-label="Remove window">×</button>`;row.querySelector('button').onclick=()=>row.remove();$('windows').append(row);}
+function actionButtons(block){return block.status==='planned'?`<div class="actions"><button class="quiet" data-block="${block.id}" data-status="completed">✓ Complete</button><button class="quiet" data-block="${block.id}" data-status="skipped">Skip</button></div>`:`<span class="pill completed">completed</span>${block.task_deleted?'<p>Task in Trash · completed history retained</p>':''}`;}
+function taskActions(t){
+ let result=`<div class="actions"><button class="quiet" data-edit="${t.id}">Edit</button><button class="quiet" data-delete-task="${t.id}">Delete</button>`;
+ if(t.status!=='completed'&&t.target_date===state.day){
+  result+=`<button class="quiet" data-task="${t.id}" data-status="${t.status==='skipped'?'planned':'skipped'}">${t.status==='skipped'?'Restore':'Skip task'}</button>`;
+  if(t.scheduled_minutes===t.remaining_minutes&&t.remaining_minutes>0)result+=`<button class="quiet" data-task="${t.id}" data-status="completed">Complete remaining ${t.remaining_minutes}m</button>`;
+ }
+ return result+'</div>';
+}
+function render(){
+ const l=state.load;$('load').textContent=l.percent+'%';$('scheduled').textContent=`${l.scheduled_minutes} / ${l.usable_minutes}m`;$('unslotted').textContent=l.unslotted_minutes+'m';$('loadfill').style.width=Math.min(100,l.percent)+'%';$('loadbar').setAttribute('aria-valuenow',l.percent);$('load-detail').textContent=`${l.completed_minutes}m completed today · Usable time excludes fixed commitments. Load includes completed work within usable hours.`;
+ $('windows').replaceChildren();state.windows.forEach(w=>addWindow(...w));
+ $('commitments').innerHTML=state.commitments.map(c=>`<div class="item"><div class="row"><h3>${esc(c.name)}</h3><div class="actions"><button class="quiet" data-edit-commitment="${c.id}">Edit</button><button class="quiet" data-remove-commitment="${c.id}">Remove</button></div></div><p>${esc(c.start)} → ${esc(c.end)}</p></div>`).join('');
+ const events=[...state.blocks.filter(b=>b.status!=='skipped').map(b=>({...b,a:b.start,b:b.end,fixed:false})),...state.commitments.map(c=>({...c,a:c.start_minute,b:c.end_minute,fixed:true}))].sort((a,b)=>a.a-b.a||a.id-b.id);
+ $('timeline').innerHTML=events.length?events.map(e=>`<div class="slot ${e.fixed?'fixed':esc(e.energy)+' '+esc(e.status)}"><time>${clock(e.a)}–${clock(e.b)}<br>${e.b-e.a} minutes</time><div><div class="row"><h3>${esc(e.name)}</h3><span class="pill ${e.fixed?'':esc(e.energy)}">${e.fixed?'fixed':esc(e.energy)}</span></div>${e.fixed?'<p>Protected time</p>':actionButtons(e)}</div></div>`).join(''):'<div class="empty">A clear day starts here.<br>Add your tasks and generate a schedule.</div>';
+ $('task-count').textContent=`(${state.tasks.length})`;
+ $('tasks').innerHTML=state.tasks.length?state.tasks.map(t=>`<div class="item"><div class="row"><h3>${esc(t.name)}</h3><span class="pill ${esc(t.status)}">${esc(t.status)}</span></div><p>${t.duration}m · ${esc(t.priority)} · ${esc(t.energy)} · chunks ${t.min_chunk}–${t.max_chunk}m<br>Due ${esc(t.deadline)} · ${t.completed_minutes}m complete · ${t.scheduled_minutes}m planned here${t.target_date!==state.day?`<br>Task assigned to ${esc(t.target_date)}`:''}</p>${t.unslotted_minutes?`<p class="reason">${t.unslotted_minutes}m unslotted — ${esc(t.reason||'Generate a schedule to find available slots.')}</p>`:''}${taskActions(t)}</div>`).join(''):'<p class="muted">No tasks for this date.</p>';
+ const history=state.blocks.filter(b=>b.status==='skipped');$('history-panel').hidden=!history.length;$('history').innerHTML=history.map(b=>`<div class="item"><h3>${esc(b.name)}</h3><p>${clock(b.start)}–${clock(b.end)} · skipped, no completion credit</p></div>`).join('');
+ $('trash-count').textContent=`(${state.trash.length})`;
+ $('trash').innerHTML=state.trash.length?state.trash.map(t=>`<div class="item"><div class="row"><h3>${esc(t.name)}</h3><button class="quiet" data-restore-task="${t.id}">Restore task</button></div><p>Assigned ${esc(t.target_date)} · ${esc(t.status)}</p></div>`).join(''):'<p class="muted">Trash is empty.</p>';
+}
+async function refresh(){state=await api('/api/day?date='+encodeURIComponent($('day').value));render();}
+async function changed(message){await refresh();notice(message);}
+function formData(form){return Object.fromEntries(new FormData(form));}
+defaults();run(async()=>{await refresh();notice('Ready.');});
+$('refresh').onclick=()=>run(async()=>{await refresh();notice('Day refreshed.');});
+$('day').onchange=()=>run(async()=>{defaults();await refresh();notice('');});
+$('plan').onclick=()=>run(async()=>{notice('Finding your schedule…');const result=await api('/api/plan','POST',{day:$('day').value});await changed(`${result.scheduled_tasks} tasks scheduled. ${result.unslotted_tasks} unslotted.${result.placement==='feasible_placement'?' Valid placement found; energy preference search reached its limit.':''}`);});
+$('push').onclick=()=>run(async()=>{notice('Moving unfinished work…');const result=await api('/api/push','POST',{day:$('day').value});if(result.moved){$('day').value=result.day;defaults();}await changed(`${result.moved} tasks moved to ${result.day}. Completed history and deadlines preserved.`);});
+$('task-form').onsubmit=e=>{e.preventDefault();run(async()=>{const data=formData(e.target);['duration','min_chunk','max_chunk'].forEach(k=>data[k]=Number(data[k]));data.target_date=$('day').value;await api('/api/tasks','POST',data);e.target.elements.name.value='';await changed('Task added. Generate your schedule when ready.');});};
+$('bulk-form').onsubmit=e=>{e.preventDefault();run(async()=>{const result=await api('/api/tasks/bulk','POST',{day:$('day').value,text:$('bulk').value});$('bulk').value='';await changed(`${result.ids.length} tasks imported. Generate your schedule when ready.`);});};
+$('add-window').onclick=()=>addWindow();
+$('windows-form').onsubmit=e=>{e.preventDefault();run(async()=>{const windows=[...$('windows').children].map(row=>[...row.querySelectorAll('input')].map(input=>{const [h,m]=input.value.split(':').map(Number);return h*60+m;}));await api('/api/windows','PUT',{day:$('day').value,windows});await changed('Hours saved. Generate a new schedule.');});};
+$('commitment-form').onsubmit=e=>{e.preventDefault();run(async()=>{await api('/api/commitments','POST',formData(e.target));e.target.elements.name.value='';await changed('Commitment added. Generate a new schedule.');});};
+document.addEventListener('click',e=>{const button=e.target.closest('button');if(!button||busy)return;const d=button.dataset;
+ if(d.block)run(async()=>{await api(`/api/blocks/${d.block}/status`,'POST',{status:d.status});await changed(d.status==='completed'?'Work recorded. Keep going.':'Block skipped. Generate again or push unfinished work to tomorrow.');});
+ if(d.task)run(async()=>{await api(`/api/tasks/${d.task}/status`,'POST',{status:d.status});await changed('Task status updated.');});
+ if(d.removeCommitment)run(async()=>{await api(`/api/commitments/${d.removeCommitment}`,'DELETE',{});await changed('Commitment removed. Generate a new schedule.');});
+ if(d.deleteTask)run(async()=>{await api(`/api/tasks/${d.deleteTask}`,'DELETE',{});await changed('Task deleted. You can restore it from Trash. Completed history is preserved.');});
+ if(d.restoreTask)run(async()=>{const t=state.trash.find(t=>t.id===Number(d.restoreTask));await api(`/api/tasks/${d.restoreTask}/restore`,'POST',{});$('day').value=t.target_date;defaults();await changed('Task restored to its saved date. Generate a schedule when ready.');});
+ if(d.edit){const t=state.tasks.find(t=>t.id===Number(d.edit));for(const k of ['id','name','deadline','priority','energy','duration','min_chunk','max_chunk','target_date'])$('edit-form').elements[k].value=k==='deadline'?t[k].replace(' ','T'):t[k];$('edit-progress').textContent=`${t.completed_minutes} minutes already completed · ${t.remaining_minutes} minutes remaining · ${t.status}`;$('edit-error').textContent='';$('edit-dialog').showModal();}
+ if(d.editCommitment){const c=state.commitments.find(c=>c.id===Number(d.editCommitment));for(const k of ['id','name','start','end'])$('commitment-edit-form').elements[k].value=['start','end'].includes(k)?c[k].replace(' ','T'):c[k];$('commitment-error').textContent='';$('commitment-dialog').showModal();}
+});
+$('close-edit').onclick=()=>$('edit-dialog').close();
+$('edit-form').onsubmit=e=>{e.preventDefault();run(async()=>{const data=formData(e.target),id=data.id;delete data.id;['duration','min_chunk','max_chunk'].forEach(k=>data[k]=Number(data[k]));await api('/api/tasks/'+id,'PATCH',data);$('edit-dialog').close();$('day').value=data.target_date;defaults();await changed('Task updated. Generate a schedule after changes to timing, priority, or energy.');});};
+$('close-commitment').onclick=()=>$('commitment-dialog').close();
+$('commitment-edit-form').onsubmit=e=>{e.preventDefault();run(async()=>{const data=formData(e.target),id=data.id;delete data.id;await api('/api/commitments/'+id,'PATCH',data);$('commitment-dialog').close();$('day').value=data.start.slice(0,10);defaults();await changed('Commitment updated. Generate a new schedule.');});};
+</script></body></html>
