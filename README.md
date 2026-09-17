@@ -1,4 +1,4 @@
-# Slot v1
+# Slot v1.1
 
 A local scheduling app built with Python, SQLite, Google OR-Tools CP-SAT, Flask,
 and a single HTML dashboard. No accounts, cloud APIs, or frontend build tools.
@@ -7,7 +7,7 @@ and a single HTML dashboard. No accounts, cloud APIs, or frontend build tools.
 
 Here is what I have built/done in the project:
 - Refined helper functions in engine.py
-- Curated features; initial v1 and v2 of this project was not good, so I had to implement features such as deleting tasks and editing properties after creation
+- Curated features; initial v1 f this project was not good, so I had to implement features such as deleting tasks and editing properties after creation
 - Built the UI specification (I built it, but AI implemented it because it was primarily just copying and pasting elements like hex codes, size values for different parts of the app, etc...)
 - Did extensive beta testing to ensure that the app worked correctly
 
@@ -30,25 +30,6 @@ If the font is missing, the browser falls back to its default monospace font.
 Font source: [Vercel Geist](https://github.com/vercel/geist-font), distributed
 through the official `geist` npm package, version 1.7.2. The original SIL Open
 Font License is included in `static/fonts/OFL.txt`.
-
-## Upgrade from an earlier ZIP
-
-1. Stop Slot with **Ctrl+C** in its terminal.
-2. Copy your existing `slot.db` to a safe backup location while Slot is stopped.
-3. Extract this ZIP to a separate folder, then copy its files into your existing
-   `slot` folder, replacing the old source files and `templates/index.html` and
-   adding the new `static` folder, including the font and its license.
-   Keep your existing `slot.db` and `.venv` folder. No database is included here.
-4. Start Slot with the same command as before. It automatically upgrades the
-   existing database without deleting tasks or completed blocks.
-5. Refresh the browser with **Ctrl+F5** to load the updated dashboard.
-
-Dependencies are unchanged. The upgrade adds a Trash flag and stores original
-block labels for history. Pre-upgrade labels are captured as they exist at
-upgrade time; old labels already changed by v1 cannot be reconstructed.
-If reverting to v1, restore the matching pre-upgrade database backup too: the old
-app does not understand deleted tasks. See `FEATURE_AUDIT.md` for the full audit.
-The Mono edition makes no further database changes beyond v1.1.
 
 ## Build (Windows)
 1. Download the folder `Slot-Windows.zip`, and extract its contents.
