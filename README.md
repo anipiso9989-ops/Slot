@@ -5,6 +5,16 @@ and a single HTML dashboard. No accounts, cloud APIs, or frontend build tools.
 
 **DISCLAIMER:** This app was vibe coded with GPT-6 Astra. I acted as the project manager/designer, guiding and curating features, because I wanted to see how well of a project the aforementioned model could cook up.
 
+Here is what I have built/done in the project:
+- Refined helper functions in engine.py
+- Curated features; initial v1 and v2 of this project was not good, so I had to implement features such as deleting tasks and editing properties after creation
+- Built the UI specification (I built it, but AI implemented it because it was primarily just copying and pasting elements like hex codes, size values for different parts of the app, etc...)
+- Did extensive beta testing to ensure that the app worked correctly
+
+
+
+***
+
 ## Monochrome interface
 
 This app uses Geist Mono throughout the app, square corners, thin white
